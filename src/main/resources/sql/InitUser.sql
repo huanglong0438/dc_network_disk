@@ -1,0 +1,1 @@
+insert into t_user(username, password) values ('dlc','123');

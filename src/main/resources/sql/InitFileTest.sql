@@ -1,0 +1,1 @@
+insert into t_file_list(filename, isdir, filepath, ownerName) values ('testfile.tst', 0, '/', 'dlc');
