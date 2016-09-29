@@ -3,10 +3,17 @@ package com.dcnetworkdisk.file.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Entity
 @Table(name = "t_file_list")
@@ -19,7 +26,9 @@ public class DcFile {
 	private String isdir;
 	private String filepath;
 	private BigDecimal filesize;
+	@Generated(value = GenerationTime.ALWAYS)
 	private Date create_date;
+	@Generated(value = GenerationTime.ALWAYS)
 	private Date modified_date;
 	private String ownerName;
 	
@@ -76,6 +85,17 @@ public class DcFile {
 	}
 	public void setIsdir(String isdir) {
 		this.isdir = isdir;
+	}
+	
+	public String toString(){
+		String json = null;
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			json = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;
 	}
 	
 }

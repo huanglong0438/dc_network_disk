@@ -21,7 +21,7 @@
 		<a href="<c:url value="/file/sfl/<%=token%>"/>">show filelist</a>
 	</div>
 	<div id = "upload">
-		<a href="<c:url value="/upload"/>">upload file to the Server</a>
+		<a href="<c:url value="/file/upload"/>">upload file to the Server</a>
 	</div>
 	<div id = "download">
 		<a href="<c:url value="/download"/>">download file from the Server</a>

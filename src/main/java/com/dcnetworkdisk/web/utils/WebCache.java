@@ -8,6 +8,8 @@ public class WebCache {
 	
 	private static final String SECURE_TOKEN = "sc_";
 	
+	private static final String USER_CONTEXT = "_uc";
+	
 	@Autowired
 	private ServiceCache serviceCache;
 	
@@ -18,7 +20,11 @@ public class WebCache {
 	}
 	
 	public void setSecureToken(String username, String secureToken){
-		serviceCache.put(secureToken, username, HALF_HOUR);
+		serviceCache.put(SECURE_TOKEN + username, secureToken, HALF_HOUR);
+	}
+	
+	public void setUserContext(String secureToken, String username){
+		serviceCache.put(secureToken + USER_CONTEXT, username, HALF_HOUR);
 	}
 	
 	public String getUsername(String secureToken){

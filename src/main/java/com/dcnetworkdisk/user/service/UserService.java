@@ -30,11 +30,6 @@ public class UserService {
 	
 	public LoginOutput ensureUser(String username, String password){
 		LoginOutput output = new LoginOutput();
-//		if(!username.equals("dlc")){
-//			output.setLoginCode(300);
-//			output.setLoginMsg(Constants.LOGINOUTPUT_WRONG_PASSWORD);
-//			return output;
-//		}
 		if(userDao.ensureUser(username, password) == null){
 			output.setLoginCode(300);
 			output.setLoginMsg(Constants.LOGINOUTPUT_WRONG_PASSWORD);
@@ -45,6 +40,7 @@ public class UserService {
 			secureToken = Integer.toHexString(username.hashCode()) + Long.toHexString(UUID.randomUUID().getMostSignificantBits());
 			webCache.setSecureToken(username, secureToken);
 		}
+		webCache.setUserContext(secureToken, username);
 		output.setLoginCode(200);
 		output.setLoginMsg(Constants.LOGINOUTPUT_SUCCESS);
 		output.setToken(secureToken);

@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -84,21 +86,58 @@ public class FileService {
 		}
 	}
 	
-	public OutputWrapper<UploadFileOutput> uploadFile(String secureToken, MultipartFile remoteFile){
+	/**
+	 * 根据token和路径path上传文件的到服务器，并且记录到数据库中
+	 * @param secureToken
+	 * @param path
+	 * @param remoteFile
+	 * @return
+	 */
+	public OutputWrapper<UploadFileOutput> uploadFile(String secureToken, String path, MultipartFile remoteFile){
 		OutputWrapper<UploadFileOutput> wrapper = new OutputWrapper<UploadFileOutput>();
-		String username = webCache.getUsername(secureToken);
-		File localFile = new File(Constants.DEFAULT_STORAGE_LOCATION + username + remoteFile.getName());
-		UploadFileOutput output = remoteToLocal(remoteFile, localFile);
-		wrapper.setResult(output);
-		return wrapper;
+		try {
+			path = URLDecoder.decode(path, "utf-8");
+			String username = webCache.getUsername(secureToken);
+			File localFile = new File(Constants.DEFAULT_STORAGE_LOCATION + username + path + remoteFile.getOriginalFilename());
+			if(remoteToLocal(remoteFile, localFile)){
+				//修改数据库
+				DcFile dcFile = new DcFile();
+				dcFile.setFilename(localFile.getName());
+				dcFile.setFilepath(path);
+				dcFile.setFilesize(BigDecimal.valueOf(localFile.length()));
+				dcFile.setIsdir("0");
+				dcFile.setOwnerName(username);
+				dcFile = fileDao.save(dcFile);
+				logger.info("数据库修改成功:" + dcFile);
+				//返回结果
+				UploadFileOutput output = new UploadFileOutput();
+				output.setFid(dcFile.getFid());
+				output.setFilename(dcFile.getFilename());
+				output.setPath(dcFile.getFilepath());
+				output.setSize(dcFile.getFilesize());
+				output.setCreate_time(dcFile.getCreate_date());
+				output.setModified_time(dcFile.getModified_date());
+				wrapper.setResult(output);
+				return wrapper;
+			}
+			else{
+				wrapper.setErrorCode("400");
+				wrapper.setErrorMsg("upload failed.");
+				return wrapper;
+			}
+		} catch (UnsupportedEncodingException e) {
+			logger.error("request param filepath format error.", e);
+			wrapper.setErrorCode("300");
+			wrapper.setErrorMsg("request param filepath format error.");
+			return wrapper;
+		}
 	}
 	
 	public OutputWrapper<DownloadFileOutput> downloadFile(){
 		return null;
 	}
 	
-	private UploadFileOutput remoteToLocal(MultipartFile remoteFile, File localFile){
-		UploadFileOutput output = new UploadFileOutput();
+	private boolean remoteToLocal(MultipartFile remoteFile, File localFile){
 		byte buffer[] = new byte[1024];
 		FileOutputStream fos = null;
 		try{
@@ -109,25 +148,19 @@ public class FileService {
 				fos.write(buffer, 0, size);
 			}
 		} catch (FileNotFoundException e){
-			e.printStackTrace();
-			output.setSuccessful(false);
-			output.setErrorMsg(e.getMessage());
-			return output;
+			logger.error("file not found of FileOutputStream.", e);
+			return false;
 		} catch (IOException e) {
-			e.printStackTrace();
-			output.setSuccessful(false);
-			output.setErrorMsg(e.getMessage());
-			return output;
+			logger.error("IOException while uploading.", e);
+			return false;
 		} finally{
 			try {
 				fos.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("FileOutputStream close error.", e);
 			}
 		}
-		output.setSuccessful(true);
-		output.setFilename(localFile.getName());
-		return output;
+		return true;
 	}
 	
 	private int[] getLimit(String limit){
@@ -138,5 +171,6 @@ public class FileService {
 		}
 		return res;
 	}
+	
 	
 }

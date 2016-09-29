@@ -31,4 +31,11 @@ public class FileDaoTest extends BaseTest{
 		System.out.println("Test test");
 	}
 	
+	@Test
+	public void saveTest(){
+		DcFile dcFile = new DcFile();
+		dcFile.setFilename("test");
+		fileDao.save(dcFile);
+		System.out.println(dcFile);
+	}
 }
