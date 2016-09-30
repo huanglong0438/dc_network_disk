@@ -28,6 +28,6 @@ public class WebCache {
 	}
 	
 	public String getUsername(String secureToken){
-		return serviceCache.get(secureToken);
+		return serviceCache.getRefresh(secureToken + USER_CONTEXT, HALF_HOUR);
 	}
 }

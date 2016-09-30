@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class RespMsg implements Serializable{
 	
+	private static final long serialVersionUID = 2139118649510380513L;
+
 	private String code;
 	private String message;
 	private String[] params;
 	
-	
-
 	public RespMsg(String code, String message) {
 		this(code, message, (String[])null);
 	}

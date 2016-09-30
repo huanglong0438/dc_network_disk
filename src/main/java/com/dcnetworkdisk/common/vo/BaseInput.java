@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BaseInput implements Serializable{
 	
+	private static final long serialVersionUID = -3373240258947885163L;
 	@JsonIgnore
 	private UserContext userContext = new UserContext();
 	

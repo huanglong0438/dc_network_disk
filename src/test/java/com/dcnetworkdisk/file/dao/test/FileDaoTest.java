@@ -2,12 +2,9 @@ package com.dcnetworkdisk.file.dao.test;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dcnetworkdisk.common.test.BaseTest;
 import com.dcnetworkdisk.file.dao.FileDao;
@@ -24,9 +21,8 @@ public class FileDaoTest extends BaseTest{
 	
 	@Test
 	public void findByOwnerNameAndPathTest(){
-		String ownerName = "dlc";
-		String path = "/";
 		List<DcFile> list = fileDao.findByOwnerNameAndFilepath("dlc", "/");
+		System.out.println(list);
 		userDao.ensureUser("dlc", "123");
 		System.out.println("Test test");
 	}

@@ -22,8 +22,8 @@ function checkit(){
 	theForm.submit();
 }
 </script>
-<center>
 <body>
+<center>
 	<b>Input the login username and password</b>
 	<br><br><br><br><br>
 	<form id="form" name="loginForm" action="<c:url value="/u/weblogin"/>" method="post">
@@ -39,6 +39,6 @@ function checkit(){
 	</table>
 	<p align="center"><input type="button" name="submit1" value="submit" onclick="checkit()"></p>
 	</form>
-</body>
 </center>
+</body>
 </html>

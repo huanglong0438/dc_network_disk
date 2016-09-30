@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class OutputWrapper<R> implements Serializable {
 
+	private static final long serialVersionUID = 2841247626738720810L;
+
 	@JsonProperty("ec")
 	private String errorCode;
 	

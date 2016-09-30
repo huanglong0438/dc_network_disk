@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.core.RepositoryInformation;
 
-import com.sun.xml.internal.ws.api.addressing.WSEndpointReference.Metadata;
 
 public class DcRepositoryFactory extends JpaRepositoryFactory{
 
+	@SuppressWarnings("unused")
 	private EntityManager entityManager;
 	
 	public DcRepositoryFactory(EntityManager entityManager) {
@@ -24,7 +24,7 @@ public class DcRepositoryFactory extends JpaRepositoryFactory{
 	protected <T, ID extends Serializable> SimpleJpaRepository<?, ?> getTargetRepository(
 			RepositoryInformation information, EntityManager entityManager) {
 		JpaEntityInformation<?, Serializable> entityInformation = getEntityInformation(information.getDomainType());
-		return new DcRepositoryImpl(entityInformation, entityManager);
+		return new DcRepositoryImpl<>(entityInformation, entityManager);
 	}
 	
 	

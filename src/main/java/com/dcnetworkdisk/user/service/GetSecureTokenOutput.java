@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GetSecureTokenOutput extends BaseOutput{
 	
+	private static final long serialVersionUID = -8616515922956331957L;
 	@JsonProperty("tk")
 	private String secureToken;
 

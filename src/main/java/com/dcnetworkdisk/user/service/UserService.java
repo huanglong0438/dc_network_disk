@@ -9,7 +9,6 @@ import com.dcnetworkdisk.common.constant.Constants;
 import com.dcnetworkdisk.common.vo.OutputWrapper;
 import com.dcnetworkdisk.common.vo.UserOutput;
 import com.dcnetworkdisk.user.dao.UserDao;
-import com.dcnetworkdisk.user.model.User;
 import com.dcnetworkdisk.web.utils.WebCache;
 
 @Service

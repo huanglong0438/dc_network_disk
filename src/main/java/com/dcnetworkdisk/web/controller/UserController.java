@@ -1,14 +1,11 @@
 package com.dcnetworkdisk.web.controller;
 
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.dcnetworkdisk.common.vo.OutputWrapper;
 import com.dcnetworkdisk.user.service.GetSecureTokenInput;
@@ -53,12 +50,12 @@ public class UserController {
 	}
 	
 
-	public String login2(@RequestBody LoginInput input){
-		String username = input.getUsername();
-		String password = input.getPassword();
-		String token = "afsdfldsjflsfuewior";
-		return token;
-	}
+//	public String login2(@RequestBody LoginInput input){
+//		String username = input.getUsername();
+//		String password = input.getPassword();
+//		String token = "afsdfldsjflsfuewior";
+//		return token;
+//	}
 
 	public OutputWrapper<SignUpOutput> signup(@RequestBody SignUpInput input){
 		return null;

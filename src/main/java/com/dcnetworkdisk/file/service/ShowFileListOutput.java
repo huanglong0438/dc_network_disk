@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ShowFileListOutput extends BaseOutput{
 	
+	private static final long serialVersionUID = -1099872830531165728L;
 	@JsonProperty("fl")
 	private List<DcFile> filelist;
 

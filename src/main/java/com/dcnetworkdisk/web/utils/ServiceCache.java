@@ -27,4 +27,8 @@ public class ServiceCache {
 	public String put(String key, String value, int seconds){
 		return cacheUtils.put(key, value, seconds);
 	}
+	
+	public String getRefresh(String key, int seconds){
+		return cacheUtils.getRefresh(key, seconds);
+	}
 }

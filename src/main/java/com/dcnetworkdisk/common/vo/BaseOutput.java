@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class BaseOutput implements Serializable{
 
+	private static final long serialVersionUID = -8857547160019013644L;
+
 	@JsonIgnore
 	private Set<RespMsg> errors = new HashSet<RespMsg>();
 	

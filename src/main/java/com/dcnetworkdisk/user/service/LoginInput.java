@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(value=Include.NON_NULL)
 public class LoginInput extends BaseInput{
 
+	private static final long serialVersionUID = -3116623069196584928L;
+
 	@JsonProperty("un")
 	private String username;
 	

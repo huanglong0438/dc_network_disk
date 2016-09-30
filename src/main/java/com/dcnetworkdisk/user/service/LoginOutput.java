@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(value = Include.NON_NULL)
 public class LoginOutput extends BaseOutput{
 
+	private static final long serialVersionUID = -2341921085210939749L;
+
 	//200--ok, 300--密码错误， 400--用户不存在
 	@JsonProperty("lc")
 	private int loginCode;

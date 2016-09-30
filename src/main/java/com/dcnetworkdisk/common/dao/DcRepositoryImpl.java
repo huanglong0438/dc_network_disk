@@ -11,6 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public class DcRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements DcRepository<T, ID>{
 
+	@SuppressWarnings("unused")
 	private final EntityManager entityManager;
 	
 	public DcRepositoryImpl(final JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
