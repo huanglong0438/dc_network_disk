@@ -1,5 +1,7 @@
 package com.dcnetworkdisk.web.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,8 +44,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="weblogin", method=RequestMethod.POST)
-	public @ResponseBody OutputWrapper<LoginOutput> processLogin(String username, String password){
+	public @ResponseBody OutputWrapper<LoginOutput> processLogin(HttpSession session, String username, String password){
 		LoginOutput output = userService.ensureUser(username, password);
+		if(output.getLoginCode() == 200){
+			//在session里面写入token
+			session.setAttribute("token", output.getToken());
+		}
 		OutputWrapper<LoginOutput> wrapper = new OutputWrapper<LoginOutput>();
 		wrapper.setResult(output);
 		return wrapper;
