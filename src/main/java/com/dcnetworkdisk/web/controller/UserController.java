@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dcnetworkdisk.common.DcWebResponse;
 import com.dcnetworkdisk.common.vo.OutputWrapper;
 import com.dcnetworkdisk.user.service.GetSecureTokenInput;
 import com.dcnetworkdisk.user.service.GetSecureTokenOutput;
@@ -33,6 +34,7 @@ public class UserController {
 	public void login(){
 	}
 	
+	@DcWebResponse
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	public @ResponseBody OutputWrapper<LoginOutput> processLogin(@RequestBody LoginInput input){
 		String username = input.getUsername();
@@ -43,6 +45,7 @@ public class UserController {
 		return wrapper;
 	}
 	
+	@DcWebResponse
 	@RequestMapping(value="weblogin", method=RequestMethod.POST)
 	public @ResponseBody OutputWrapper<LoginOutput> processLogin(HttpSession session, String username, String password){
 		LoginOutput output = userService.ensureUser(username, password);
