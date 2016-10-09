@@ -1,12 +1,12 @@
 基于SpringMVC、MySQL、Redis的网盘系统
 
 使用到的技术：
-	·SpringMVC: MVC框架
-	·Tomcat: web容器
-	·Hibernate: ORM框架
+·SpringMVC: MVC框架
+·Tomcat: web容器
+·Hibernate: ORM框架
 计划加入的功能：
-	·quartz定时任务，用来定时同步数据库和用户文件夹的文件
-	·非对称加密，用来对用户要求加密上传的文件进行加密
+·quartz定时任务，用来定时同步数据库和用户文件夹的文件
+·非对称加密，用来对用户要求加密上传的文件进行加密
 
 目前已经做好的API接口：
 方法名
