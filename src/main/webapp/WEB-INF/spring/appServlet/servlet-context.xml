@@ -15,8 +15,12 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
+	<annotation-driven></annotation-driven>
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/img/**" location="/static/img/"/>
+	<resources mapping="/css/**" location="/static/css/"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -29,8 +33,6 @@
 
 	<!-- Imports user-defined @Controller beans that process client requests -->
 	<beans:import resource="controllers.xml" />
-	
-	<annotation-driven></annotation-driven>
 	
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 

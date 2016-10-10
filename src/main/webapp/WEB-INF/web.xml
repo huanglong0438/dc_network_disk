@@ -32,12 +32,12 @@
 	</welcome-file-list>
 	
 	<filter>
-		<filter-name>csrfFilter</filter-name>
+		<filter-name>encodingFilter</filter-name>
 		<filter-class>com.dcnetworkdisk.common.filter.SetCharacterEncodingFilter</filter-class>
 		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
-		<filter-name>csrfFilter</filter-name>
+		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
 </web-app>
