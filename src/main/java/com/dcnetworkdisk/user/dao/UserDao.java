@@ -13,4 +13,5 @@ public interface UserDao extends DcRepository<User, String>{
 	@Query("select u from User u where u.username = :username and u.password = :password")
 	public User ensureUser(@Param("username") String username, @Param("password") String password);
 	
+	public User findByUsername(String username);
 }

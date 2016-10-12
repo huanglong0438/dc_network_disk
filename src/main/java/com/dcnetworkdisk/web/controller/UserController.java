@@ -4,10 +4,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dcnetworkdisk.common.DcWebResponse;
 import com.dcnetworkdisk.common.vo.OutputWrapper;
@@ -58,13 +60,12 @@ public class UserController {
 		return wrapper;
 	}
 	
-
-//	public String login2(@RequestBody LoginInput input){
-//		String username = input.getUsername();
-//		String password = input.getPassword();
-//		String token = "afsdfldsjflsfuewior";
-//		return token;
-//	}
+	@RequestMapping(value="getUserInfo/{secureToken}", method=RequestMethod.GET)
+	public ModelAndView getUserInfo(@PathVariable String secureToken){
+		ModelAndView modelAndView = userService.getUserInfo_web(secureToken);
+		modelAndView.setViewName("u/userInfo");
+		return modelAndView;
+	}
 
 	public OutputWrapper<SignUpOutput> signup(@RequestBody SignUpInput input){
 		return null;

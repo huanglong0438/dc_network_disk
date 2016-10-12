@@ -1,0 +1,32 @@
+.list-view-item {
+    position: relative;
+    line-height: 44px;
+    border-bottom: 1px solid #f2f6fd;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.div-item{
+	position: relative;
+	float: left;
+	text-overflow: inherit;
+	overflow: hidden;
+	border-bottom: inherit;
+	background: inherit;
+	white-space: inherit;
+	line-height: 44px;
+	height: 44px;
+}
+.h2{
+	padding-top: 20px;
+}
+.fileicon{
+	cursor: default;
+    display: block;
+    height: 26px;
+    width: 26px;
+    position: relative;
+    top: 10px;
+    white-space: nowrap;
+    float: left;
+	background: url(/dc_network_disk/img/file.png) center no-repeat
+}

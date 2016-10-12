@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>DC network disk home page</title>
 <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href='<c:url value="/css/landing-page.min.css"/>' rel="stylesheet" id="theme-css"/>
 <link href='<c:url value="/css/jcala-md.min.css"/>' rel="stylesheet"/>
+<link href='<c:url value="/css/dc.css"/>' rel="stylesheet"/>
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>

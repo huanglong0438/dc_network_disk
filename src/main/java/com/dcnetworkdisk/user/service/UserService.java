@@ -4,11 +4,13 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dcnetworkdisk.common.constant.Constants;
 import com.dcnetworkdisk.common.vo.OutputWrapper;
 import com.dcnetworkdisk.common.vo.UserOutput;
 import com.dcnetworkdisk.user.dao.UserDao;
+import com.dcnetworkdisk.user.model.User;
 import com.dcnetworkdisk.web.utils.WebCache;
 
 @Service
@@ -25,6 +27,34 @@ public class UserService {
 		UserOutput userOutput = new UserOutput(1,"董龙成","123456","IMG001.jpg","what the hell?");
 		output.setResult(userOutput);
 		return output;
+	}
+
+	/**
+	 * 获取用户信息
+	 * @param secureToken
+	 * @return
+	 */
+	public ModelAndView getUserInfo_web(String secureToken){
+		ModelAndView modelAndView = new ModelAndView();
+		String username = webCache.getUsername(secureToken);
+		if(username != null){
+			User user = userDao.findByUsername(username);
+			if(user != null){
+				modelAndView.addObject("success", true);
+				modelAndView.addObject("user",user);
+				return modelAndView;
+			}
+			else{
+				modelAndView.addObject("success", false);
+				modelAndView.addObject("errorMsg", "no such user.");
+				return modelAndView;
+			}
+		}
+		else{
+			modelAndView.addObject("success", false);
+			modelAndView.addObject("errorMsg", "token expired.");
+			return modelAndView;
+		}
 	}
 	
 	public LoginOutput ensureUser(String username, String password){
