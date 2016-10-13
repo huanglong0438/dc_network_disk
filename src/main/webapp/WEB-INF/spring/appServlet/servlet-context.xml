@@ -38,7 +38,7 @@
 
 	<beans:import resource="persistence.xml"/>
 
-	
+	<beans:import resource="scheduler-quartz.xml"/>
 	
 	
 </beans:beans>
