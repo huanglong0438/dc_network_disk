@@ -10,6 +10,11 @@
  * 非对称加密，用来对用户要求加密上传的文件进行加密  
  * 计划学习Bootstrap前端框架  
  
+####截图展示
+![首页界面](/screenshot/index.jpg)  
+![登录界面](/screenshot/sign_in.jpg)  
+![文件列表显示界面](/screenshot/show_file_list.jpg)  
+
 ####目前已经做好的API接口：
 - 方法名  
 接口 请求方式:请求参数  

@@ -1,6 +1,9 @@
 package com.dcnetworkdisk.web.controller;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import com.dcnetworkdisk.user.service.GetSecureTokenInput;
 import com.dcnetworkdisk.user.service.GetSecureTokenOutput;
 import com.dcnetworkdisk.user.service.LoginInput;
 import com.dcnetworkdisk.user.service.LoginOutput;
+import com.dcnetworkdisk.user.service.QuotaOutput;
 import com.dcnetworkdisk.user.service.SignUpInput;
 import com.dcnetworkdisk.user.service.SignUpOutput;
 import com.dcnetworkdisk.user.service.UserService;
@@ -49,8 +53,9 @@ public class UserController {
 	
 	@DcWebResponse
 	@RequestMapping(value="weblogin", method=RequestMethod.POST)
-	public @ResponseBody OutputWrapper<LoginOutput> processLogin(HttpSession session, String username, String password){
+	public @ResponseBody OutputWrapper<LoginOutput> processLogin(HttpServletRequest request, HttpSession session, String username, String password){
 		LoginOutput output = userService.ensureUser(username, password);
+		
 		if(output.getLoginCode() == 200){
 			//在session里面写入token
 			session.setAttribute("token", output.getToken());
@@ -69,5 +74,12 @@ public class UserController {
 
 	public OutputWrapper<SignUpOutput> signup(@RequestBody SignUpInput input){
 		return null;
+	}
+	
+	@RequestMapping(value="quota/{secureToken}", method=RequestMethod.GET)
+	public @ResponseBody OutputWrapper<QuotaOutput> quota(@PathVariable String secureToken){
+		OutputWrapper<QuotaOutput> wrapper = new OutputWrapper<>();
+		wrapper.setResult(userService.getQuota(secureToken));
+		return wrapper;
 	}
 }

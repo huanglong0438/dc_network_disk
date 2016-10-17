@@ -1,5 +1,6 @@
 package com.dcnetworkdisk.user.service;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,17 @@ public class UserService {
 		output.setLoginCode(200);
 		output.setLoginMsg(Constants.LOGINOUTPUT_SUCCESS);
 		output.setToken(secureToken);
+		return output;
+	}
+	
+	public QuotaOutput getQuota(String secureToken){
+		QuotaOutput output = new QuotaOutput();
+		String username = webCache.getUsername(secureToken);
+		if(username == null){
+			return null;
+		}
+		output.setQuota(BigDecimal.valueOf(2000000000));
+		output.setUsed(BigDecimal.valueOf(500000000));
 		return output;
 	}
 	
