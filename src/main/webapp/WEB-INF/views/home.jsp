@@ -1,5 +1,4 @@
 <%@include file="header.jsp" %>
-	<c:set var="token" value="${token}"></c:set>
 	<div class="content-section-a">
 	<div class="container">
 		<div class="row">

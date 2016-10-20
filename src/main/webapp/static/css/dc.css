@@ -40,6 +40,7 @@ body {
 }
 
 .list-view-item {
+	height: 44px;
     position: relative;
     line-height: 44px;
     border-bottom: 1px solid #ffffff;
@@ -179,4 +180,20 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+
+.module-toolbar {
+    position: relative;
+    z-index: 4;
+    background-color: #FFF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 4px 0 3px;
+}
+
+.module-toolbar .bar {
+    height: 33px;
+    padding: 11px 10px;
+    margin-right: 400px;
 }

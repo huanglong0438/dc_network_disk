@@ -14,6 +14,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
+<c:set var="token" value="${token}"></c:set>
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
     <div class="container topnav">
         <div class="navbar-header">
@@ -40,7 +41,7 @@
                     <a href="/about">About</a>
                 </li>
                 <li>
-                    <a href="/admin/">Admin</a>
+                    <a href='<c:url value="/u/admin/${token}"/>'>Admin</a>
                 </li>
                 <li>
                     <a href='javascript:void(0)' onclick="day_night()"><i class="fa fa-moon-o" id="day-night"></i>

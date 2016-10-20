@@ -23,12 +23,27 @@
 	        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60% Complete</span></div>
 	      </div>
 	      <div>
-	      	<div>1.2G/2G</div>
-	        <div><a href="">enlarge</a></div>
+	      	<div class= text-left>1.2G/2G <a href="" class="text-right">enlarge</a></div>
 	      </div>
         </div>
 	        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">File List</h1>
+				<div class="module-toolbar g-clearfix">
+					<div class="list-grid-switch list-switched-on">
+						<a class="list-switch" node-type="list-switch" style="display: none;" href="javascript:void(0);"></a>
+						<a class="grid-switch" node-type="grid-switch" href="javascript:void(0)"></a>
+					</div>
+					<div class="sort-switch"></div>
+					<div class="bar-search"></div>
+					<div class="bar" style="white-space: nowrap; position: relative;">
+						<div class="tools" style="position: absolute; top: 0px; padding-top: 11px; line-height: normal;">
+							<a href="javascript:void(0)">Upload</a>
+							<a href="javascript:void(0);" onclick="create_folder()">Create folder</a>
+							<a href="javascript:void(0);">Offline Download</a>
+							<a href="javascript:void(0);">My Device</a>
+						</div>
+					</div>
+				</div>
 				<c:set var="token" value="${token}"/>
 				<c:set var="sucess" value="${success}"></c:set>
 				<c:if test="${sucess == true}">
