@@ -2,6 +2,8 @@ create table if not exists t_user(
 	uid int unsigned primary key auto_increment comment '用户Id号，自增主键',
 	username varchar(20) not null unique comment '用户名',
 	password varchar(256) comment '用户密码(md5)',
+	email varchar(320) unique comment 'email地址',
+	phone varchar(11) unique comment '手机号',
 	avatar char(10) comment '用户头像序号',
 	whatsup varchar(200) comment '用户个性签名',
 	

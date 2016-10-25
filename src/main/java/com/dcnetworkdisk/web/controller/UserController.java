@@ -78,9 +78,14 @@ public class UserController {
 		modelAndView.setViewName("u/userInfo");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="admin")
+	public String adminAndLogin(){
+		return "u/login";
+	}
 
-	public OutputWrapper<SignUpOutput> signup(@RequestBody SignUpInput input){
-		return null;
+	@RequestMapping(value="signup")
+	public void signup(){
 	}
 	
 	@RequestMapping(value="quota/{secureToken}", method=RequestMethod.GET)
