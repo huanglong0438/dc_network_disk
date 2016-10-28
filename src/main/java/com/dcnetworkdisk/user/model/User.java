@@ -14,8 +14,11 @@ public class User{
 	private int uid;
 	private String username;
 	private String password;
+	private String email;
+	private String phone;
 	private String avatar;
 	private String whatsup;
+	private int status;
 
 	public int getUid() {
 		return uid;
@@ -47,5 +50,22 @@ public class User{
 	public void setWhatsup(String whatsup) {
 		this.whatsup = whatsup;
 	}
-	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 }

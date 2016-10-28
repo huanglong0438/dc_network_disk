@@ -6,6 +6,7 @@ create table if not exists t_user(
 	phone varchar(11) unique comment '手机号',
 	avatar char(10) comment '用户头像序号',
 	whatsup varchar(200) comment '用户个性签名',
+	status tinyint comment '用户当前的状态，正常，未激活',
 	
 	create_date timestamp not null default current_timestamp,
 	modified_date timestamp not null default current_timestamp on update current_timestamp

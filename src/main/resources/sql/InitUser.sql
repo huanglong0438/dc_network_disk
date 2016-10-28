@@ -1,1 +1,1 @@
-insert into t_user(username, password) values ('dlc','123');
+insert into t_user(username, password, status) values ('dlc','123', 0);

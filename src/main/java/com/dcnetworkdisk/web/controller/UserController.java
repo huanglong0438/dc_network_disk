@@ -1,9 +1,8 @@
 package com.dcnetworkdisk.web.controller;
 
-import javax.servlet.ServletContext;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import com.dcnetworkdisk.user.service.LoginInput;
 import com.dcnetworkdisk.user.service.LoginOutput;
 import com.dcnetworkdisk.user.service.QuotaOutput;
 import com.dcnetworkdisk.user.service.SignUpInput;
-import com.dcnetworkdisk.user.service.SignUpOutput;
 import com.dcnetworkdisk.user.service.UserService;
 
 @Controller
@@ -86,6 +84,14 @@ public class UserController {
 
 	@RequestMapping(value="signup")
 	public void signup(){
+	}
+	
+	@RequestMapping(value="signup_withemail")
+	public ModelAndView signup_withemail(SignUpInput input){
+		userService.signup_withemail(input);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("u/signup_withemail_result");
+		return modelAndView;
 	}
 	
 	@RequestMapping(value="quota/{secureToken}", method=RequestMethod.GET)
