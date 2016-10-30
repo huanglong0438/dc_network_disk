@@ -92,12 +92,14 @@ public class UserService {
 	
 	public boolean signup_withemail(SignUpInput input){
 		//注册先在数据库里面写入用户信息，并且状态置为未验证，然后给注册好的邮箱发送激活提示邮件，最后返回结果
+		//果然还是先放到redis里面比较好，因为还要生成一个code，不然谁都能发个http请求就验证成功了，应该在redis里面保存用户的信息和code，如果验证成功再写到MySQL，否则就等到到期了就刷掉
 		User user = new User();
 		user.setUsername(input.getUsername());
 		user.setPassword(input.getPassword());
 		user.setEmail(input.getEmail());
 		user.setPhone(input.getPhone());
 		user.setStatus(UserStatus.NOT_ACTIVED.getCode());
+		//在save的这一步其实也有可能出问题，比如邮箱已经注册过（违反了唯一性的约束）
 		user = userDao.save(user);
 		//如果邮件发送失败的话，最好再多试几次，如果依然失败则数据库回滚，并且返回错误
 		EmailUtil.sendEmail(user.getEmail(), generateEmailValidText());
@@ -107,7 +109,11 @@ public class UserService {
 	
 	private String generateEmailValidText(){
 		//https://www.woyaovpn.net/user/active?name=huanglong0438&code=8f662b2f3b7d6ac8bd5d3b6799c9bbbe
-		return "hey, this is just a test email.";
+		//code = 随机生成的保存在redis里面的uuid
+		return "Someone uses this email address to sign up on the DcNetworkDisk,\r"
+				+ "if it wasn't you, please ignore this email.\r"
+				+ "if it was you, please click on the following link:\r"
+				+ "https://localhost:8080/dcnetworkdisk/u/active?name=huanglong0438&code=8f662b2f3b7d6ac8bd5d3b6799c9bbbe";
 	}
 	
 }
