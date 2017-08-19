@@ -24,7 +24,7 @@ public class DcRepositoryFactory extends JpaRepositoryFactory{
 	protected <T, ID extends Serializable> SimpleJpaRepository<?, ?> getTargetRepository(
 			RepositoryInformation information, EntityManager entityManager) {
 		JpaEntityInformation<?, Serializable> entityInformation = getEntityInformation(information.getDomainType());
-		return new DcRepositoryImpl<>(entityInformation, entityManager);
+		return new DcRepositoryImpl(entityInformation, entityManager);
 	}
 	
 	

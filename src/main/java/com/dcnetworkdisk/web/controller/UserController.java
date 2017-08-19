@@ -96,7 +96,7 @@ public class UserController {
 	
 	@RequestMapping(value="quota/{secureToken}", method=RequestMethod.GET)
 	public @ResponseBody OutputWrapper<QuotaOutput> quota(@PathVariable String secureToken){
-		OutputWrapper<QuotaOutput> wrapper = new OutputWrapper<>();
+		OutputWrapper<QuotaOutput> wrapper = new OutputWrapper<QuotaOutput>();
 		wrapper.setResult(userService.getQuota(secureToken));
 		return wrapper;
 	}
