@@ -1,24 +1,24 @@
-##DCnetworkDisk 网盘系统  
+#DCnetworkDisk 网盘系统  
 基于SpringMVC、MySQL、Redis的网盘系统  
-####使用到的技术：  
+##使用到的技术：  
  * SpringMVC: MVC框架  
  * Tomcat: web容器  
  * Hibernate: ORM框架  
  * quartz定时任务，用来定时同步数据库和用户文件夹的文件
  
-####计划加入的功能：  
+##计划加入的功能：  
  * 非对称加密，用来对用户要求加密上传的文件进行加密  
  * 计划学习Bootstrap前端框架  
  
-####截图展示
-#####首页界面
+##截图展示
+###首页界面
 ![首页界面](/screenshot/index.png)  
 #####登录界面
 ![登录界面](/screenshot/sign_in.png)  
-#####文件列表显示界面
+###文件列表显示界面
 ![文件列表显示界面](/screenshot/show_file_list.png)  
 
-####目前已经做好的API接口：
+##目前已经做好的API接口：
 - 方法名  
 接口 请求方式:请求参数  
 返回结果  
